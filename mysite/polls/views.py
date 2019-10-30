@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Question
 
 # Create your views here.
 
 
 def index(request):
-    """A view for the index page."""
-    return HttpResponse("Hello, world. You're at the polls index.")
+    """Display latest 5 questions."""
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    output = ", ".join([q.question_text for q in latest_question_list])
+    return HttpResponse(output)
 
 
 def detail(request, question_id):
@@ -16,7 +19,7 @@ def detail(request, question_id):
 
 def results(request, question_id):
     """A view to see answers so far on the poll."""
-    response = f"You're looking at the results for {question_id}"
+    response = f"You're looking at the results for question {question_id}"
     return HttpResponse(response)
 
 
