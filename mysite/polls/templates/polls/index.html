@@ -1,6 +1,7 @@
 <!-- polls/templates/polls/index.html -->
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<img src="{% static 'artem-sapegin-8c6eS43iq1o-unsplash.jpg' %}" alt="" height=250px width=250px>
 {% if latest_question_list %}
     <ul>
         {% for question in latest_question_list %}
